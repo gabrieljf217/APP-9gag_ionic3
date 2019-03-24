@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>
+      9gag
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card color="primary">
+    <ion-card-content>
+      IMAGEN 1
+    </ion-card-content>
+    <img src="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+    <ion-item color="primary">
+      <button ion-button clear item-start color="light"><ion-icon name="heart"></ion-icon></button>
+      <button ion-button clear item-end color="light"><ion-icon name="share-alt"></ion-icon></button>
+    </ion-item>
+  </ion-card>
+
+
+  <ion-fab right bottom>
+    <button ion-fab color="danger" (click)="mostrarModal()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
