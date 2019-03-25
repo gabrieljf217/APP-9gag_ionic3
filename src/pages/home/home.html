@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="dark">
+  <ion-navbar color="primary">
     <ion-title>
       9gag
     </ion-title>
@@ -8,11 +8,11 @@
 
 <ion-content>
 
-  <ion-card color="primary">
+  <ion-card color="primary" *ngFor="let post of posts | async">
     <ion-card-content>
-      IMAGEN 1
+      {{post.titulo}}
     </ion-card-content>
-    <img src="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+    <img [src]="post.img" />
     <ion-item color="primary">
       <button ion-button clear item-start color="light"><ion-icon name="heart"></ion-icon></button>
       <button ion-button clear item-end color="light"><ion-icon name="share-alt"></ion-icon></button>

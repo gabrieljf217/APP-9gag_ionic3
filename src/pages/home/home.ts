@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
-
+import { ModalController } from 'ionic-angular';
 import { SubirPage } from "../subir/subir";
+
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'page-home',
@@ -9,8 +11,12 @@ import { SubirPage } from "../subir/subir";
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController,
-              private modalCtrl:ModalController) {
+  posts: Observable<any[]>;
+
+  constructor(private modalCtrl:ModalController,
+              afDB: AngularFireDatabase) {
+
+    this.posts = afDB.list('post').valueChanges();
 
   }
 
