@@ -29,6 +29,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SubirPage } from "../pages/subir/subir";
 
+//providers
+import { CargaArchivoProvider } from '../providers/carga-archivo/carga-archivo';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -55,7 +58,8 @@ import { SubirPage } from "../pages/subir/subir";
     AngularFireDatabase,
     Camera,
     ImagePicker,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CargaArchivoProvider
   ]
 })
 export class AppModule {}

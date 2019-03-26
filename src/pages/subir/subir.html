@@ -7,6 +7,12 @@
           <ion-icon name="arrow-back"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="crearPost()"
+              [disabled]="titulo.length <=1 || imagenPreview.length <=1">
+          Crear post
+      </button> 
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>

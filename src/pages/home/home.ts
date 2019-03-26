@@ -24,5 +24,4 @@ export class HomePage {
     let modal =this.modalCtrl.create( SubirPage );
     modal.present();
   } 
-
 }
