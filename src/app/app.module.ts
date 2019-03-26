@@ -10,6 +10,7 @@ import { PipesModule } from "../pipes/pipes.module";
 //plugins
 import { Camera } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 //firebase
 import { AngularFireModule } from '@angular/fire';
@@ -58,6 +59,7 @@ import { CargaArchivoProvider } from '../providers/carga-archivo/carga-archivo';
     AngularFireDatabase,
     Camera,
     ImagePicker,
+    SocialSharing,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CargaArchivoProvider
   ]

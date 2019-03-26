@@ -5,14 +5,52 @@ import { ToastController } from 'ionic-angular';
 import { AngularFireDatabase } from "angularfire2/database";
 import * as firebase from "firebase";
 
+import "rxjs/add/operator/map";
+
 @Injectable()
 export class CargaArchivoProvider {
 
   imagenes: ArchivoSubir[] = [];
+  lastKey: string= null;
 
   constructor(public toastCtrl: ToastController,
               public afDB:AngularFireDatabase) {
-    console.log('Hello CargaArchivoProvider Provider');
+    
+    this.cargarUltimoKey().subscribe(()=>this.cargarImagenes());
+  }
+
+  private cargarUltimoKey(){
+    return this.afDB.list('/post', ref => ref.orderByKey().limitToLast(1))
+      .valueChanges()
+      .map( (post:any) =>{
+        this.lastKey = post[0].key;
+
+        this.imagenes.push( post[0] );
+      });
+  }
+
+  cargarImagenes(){
+    return new Promise ( (resolve, reject)=>{
+      this.afDB.list('/post',
+        ref=>ref.limitToLast(3)
+          .orderByKey()
+          .endAt( this.lastKey )
+      ).valueChanges()
+        .subscribe((posts:any)=>{
+        posts.pop();
+          if (posts.length == 0) {
+            console.log("No hay mas registros");
+            resolve(false);
+            return;
+          }
+          this.lastKey = posts[0].key;
+          for (let i = posts.length-1; i >=0; i--) {
+            let post = posts[i];
+            this.imagenes.push(post);
+          }
+          resolve(true);
+        });
+    });
   }
 
   cargarImagenfb( archivo: ArchivoSubir ){

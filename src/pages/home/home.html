@@ -8,14 +8,18 @@
 
 <ion-content>
 
-  <ion-card color="primary" *ngFor="let post of posts | async">
+  <ion-card color="primary" *ngFor="let post of _cap.imagenes">
     <ion-card-content>
       {{post.titulo}}
     </ion-card-content>
     <img [src]="post.img" />
     <ion-item color="primary">
-      <button ion-button clear item-start color="light"><ion-icon name="heart"></ion-icon></button>
-      <button ion-button clear item-end color="light"><ion-icon name="share-alt"></ion-icon></button>
+      <button ion-button clear item-start color="light">
+        <ion-icon name="heart"></ion-icon>
+      </button>
+      <button ion-button clear item-end color="light" (click)="compartir(post)">
+        <ion-icon name="share-alt"></ion-icon> 
+      </button>
     </ion-item>
   </ion-card>
 
@@ -25,4 +29,10 @@
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)"
+                        [enabled]="hayMas">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>
